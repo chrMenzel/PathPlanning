@@ -109,29 +109,20 @@ def optimum_policy2D(grid, init, goal, cost):
 
     policy2D[x][y] = policy[orientation][x][y]
 
+    while policy[orientation][x][y] != '*':
+        if policy[orientation][x][y] == '#':
+            o2 = orientation
+        elif policy[orientation][x][y] == 'R':
+            o2 = (orientation - 1) % 4
+        elif policy[orientation][x][y] == 'L':
+            o2 = (orientation + 1) % 4
+        x = x + forward[o2][0]
+        y = y + forward[o2][1]
+        orientation = o2
+        policy2D[x][y] = policy[orientation][x][y]
+
     for i in range(len(policy2D)):
         print(policy2D[i])
-
-    print()
-
-    for i in range(len(policy)):
-        print(policy[i])
-
-#    while policy[orientation][x][y] != '*':
-#        print(policy[orientation][x][y])
-#        if policy[orientation][x][y] == '#':
-#            o2 = orientation
-#        elif policy[orientation][x][y] != 'R':
-#            o2 = (orientation - 1) % 4
-#        elif policy[orientation][x][y] != 'L':
-#            o2 = (orientation + 1) % 4
-#        x = x + forward[o2][0]
-#        y = y + forward[o2][1]
-#        orientation = o2
-#        policy2D[x][y] = policy[orientation][x][y]
-
-#    for i in range(len(policy2D)):
-#        print(policy2D[i])
 
     return policy2D
 
